@@ -14,9 +14,11 @@ bot.on('text', ctx =>
     bot.on('location', ctx => {
         const location = ctx.update.message.location
         console.log(location)
-        ctx.reply(`Entendido, você está em
+        ctx.reply(`Entendido. Enviando ogiva 10 megatons para
             Lat: ${location.latitude},
-            Lon: ${location.longitude}!`)
+            Lon: ${location.longitude}
+
+Tempo aproximado até o impacto: 4 minutos e 35 segundos`)
     })
 
     bot.on('contact', ctx => {
@@ -29,7 +31,12 @@ bot.on('text', ctx =>
     bot.on('voice', ctx => {
         const voice = ctx.update.message.voice
         console.log(voice)
-        ctx.reply(`Meu anjo, não tenho tempo pra escutar esse seu podcast de ${voice.duration} segundos. #sorry`)
+            if (voice.duration <= 4) {
+                ctx.reply('Eu duvido que você tenha dito algo útil num áudio desse tamaninho')
+            } else {
+                ctx.reply('Meu anjo, não tenho tempo pra escutar esse seu podcast. #sorry')
+            }
+        
     })
 
     bot.on('photo', ctx => {
